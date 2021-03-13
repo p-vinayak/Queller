@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -23,8 +23,8 @@ export default function BottomTabNavigator() {
                 name="Sleep Advisor"
                 component={SleepAdvisorNavigator}
                 options={{
-                    tabBarIcon: function getIcon({ color }) {
-                        return <TabBarIcon name="ios-code" color={color} />;
+                    tabBarIcon: function advisorIcon({ color }) {
+                        return <Ionicons size={24} name="moon" color={color} />;
                     },
                 }}
             />
@@ -32,8 +32,8 @@ export default function BottomTabNavigator() {
                 name="Sleep Scheduler"
                 component={SleepSchedulerNavigator}
                 options={{
-                    tabBarIcon: function getIcon({ color }) {
-                        return <TabBarIcon name="ios-code" color={color} />;
+                    tabBarIcon: function schedulerIcon({ color }) {
+                        return <MaterialIcons size={24} name="schedule" color={color} />;
                     },
                 }}
             />
@@ -41,19 +41,13 @@ export default function BottomTabNavigator() {
                 name="Dream Journal"
                 component={DreamJournalNavigator}
                 options={{
-                    tabBarIcon: function getIcon({ color }) {
-                        return <TabBarIcon name="ios-code" color={color} />;
+                    tabBarIcon: function journalIcon({ color }) {
+                        return <Ionicons size={24} name="journal" color={color} />;
                     },
                 }}
             />
         </BottomTab.Navigator>
     );
-}
-
-// You can explore the built-in icon families and icons on the web at:
-// https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-    return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
