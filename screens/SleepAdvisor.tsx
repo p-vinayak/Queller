@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Button, Platform } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { StyleSheet, Button, Platform, Text, View } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const styles = StyleSheet.create({
@@ -8,6 +7,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#5ede9b',
     },
     title: {
         fontSize: 20,
