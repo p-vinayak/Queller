@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import EditScreenInfo from '../components/EditScreenInfo';
+import { StyleSheet, Button, Platform } from 'react-native';
 import { Text, View } from '../components/Themed';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
     },
     title: {
         fontSize: 20,
@@ -21,11 +21,30 @@ const styles = StyleSheet.create({
 });
 
 export default function SleepAdvisor() {
+    const [date, setDate] = React.useState(new Date(1598051730000));
+    const [bedtime, setBedtime] = React.useState(new Date(1598051730000));
+    const [show, setShow] = React.useState(Platform.OS === 'ios');
+
+    function onChange(event: any, selectedDate?: Date | undefined) {
+        setShow(Platform.OS === 'ios');
+        console.log(selectedDate?.toLocaleTimeString());
+        setDate(selectedDate || date);
+    }
+
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Sleep Advisor</Text>
-            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <EditScreenInfo path="/screens/SleepAdvisor.tsx" />
+            <Text>{date.toLocaleTimeString()}</Text>
+            {!(Platform.OS === 'ios') && <Button onPress={() => setShow(true)} title="Pick Bedtime"></Button>}
+            {show && (
+                <DateTimePicker
+                    value={date}
+                    mode="time"
+                    is24Hour={true}
+                    display="default"
+                    onChange={onChange}
+                    style={{ width: 140, marginLeft: 45 }}
+                />
+            )}
         </View>
     );
 }

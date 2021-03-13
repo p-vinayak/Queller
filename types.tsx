@@ -4,17 +4,17 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-    TabOne: undefined;
-    TabTwo: undefined;
-    SleepAdvisor: undefined;
+    'Sleep Scheduler': undefined;
+    'Dream Journal': undefined;
+    'Sleep Advisor': undefined;
 };
 
-export type TabOneParamList = {
-    TabOneScreen: undefined;
+export type DreamJournalParamList = {
+    DreamJournal: undefined;
 };
 
-export type TabTwoParamList = {
-    TabTwoScreen: undefined;
+export type SleepSchedulerParamList = {
+    SleepScheduler: undefined;
 };
 
 export type SleepAdvisorParamList = {

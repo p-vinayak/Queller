@@ -5,10 +5,10 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import DreamJournal from '../screens/DreamJournal';
+import SleepScheduler from '../screens/SleepScheduler';
 import SleepAdvisor from '../screens/SleepAdvisor';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, SleepAdvisorParamList } from '../types';
+import { BottomTabParamList, DreamJournalParamList, SleepSchedulerParamList, SleepAdvisorParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -17,10 +17,10 @@ export default function BottomTabNavigator() {
 
     return (
         <BottomTab.Navigator
-            initialRouteName="SleepAdvisor"
+            initialRouteName="Sleep Advisor"
             tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
             <BottomTab.Screen
-                name="SleepAdvisor"
+                name="Sleep Advisor"
                 component={SleepAdvisorNavigator}
                 options={{
                     tabBarIcon: function getIcon({ color }) {
@@ -29,8 +29,8 @@ export default function BottomTabNavigator() {
                 }}
             />
             <BottomTab.Screen
-                name="TabOne"
-                component={TabOneNavigator}
+                name="Sleep Scheduler"
+                component={SleepSchedulerNavigator}
                 options={{
                     tabBarIcon: function getIcon({ color }) {
                         return <TabBarIcon name="ios-code" color={color} />;
@@ -38,8 +38,8 @@ export default function BottomTabNavigator() {
                 }}
             />
             <BottomTab.Screen
-                name="TabTwo"
-                component={TabTwoNavigator}
+                name="Dream Journal"
+                component={DreamJournalNavigator}
                 options={{
                     tabBarIcon: function getIcon({ color }) {
                         return <TabBarIcon name="ios-code" color={color} />;
@@ -58,31 +58,31 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const SleepScheulderStack = createStackNavigator<SleepSchedulerParamList>();
 
-function TabOneNavigator() {
+function SleepSchedulerNavigator() {
     return (
-        <TabOneStack.Navigator>
-            <TabOneStack.Screen
-                name="TabOneScreen"
-                component={TabOneScreen}
-                options={{ headerTitle: 'Tab One Title' }}
+        <SleepScheulderStack.Navigator>
+            <SleepScheulderStack.Screen
+                name="SleepScheduler"
+                component={SleepScheduler}
+                options={{ headerTitle: 'Sleep Scheduler' }}
             />
-        </TabOneStack.Navigator>
+        </SleepScheulderStack.Navigator>
     );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const DreamJournalStack = createStackNavigator<DreamJournalParamList>();
 
-function TabTwoNavigator() {
+function DreamJournalNavigator() {
     return (
-        <TabTwoStack.Navigator>
-            <TabTwoStack.Screen
-                name="TabTwoScreen"
-                component={TabTwoScreen}
-                options={{ headerTitle: 'Tab Two Title' }}
+        <DreamJournalStack.Navigator>
+            <DreamJournalStack.Screen
+                name="DreamJournal"
+                component={DreamJournal}
+                options={{ headerTitle: 'Dream Journal' }}
             />
-        </TabTwoStack.Navigator>
+        </DreamJournalStack.Navigator>
     );
 }
 
