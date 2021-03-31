@@ -3,9 +3,11 @@ import { Button, StyleSheet, Modal, Text, View, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Journal() {
+   
     const [showModal, setShowModal] = React.useState(false);
-    const [text, setText] = React.useState('Sample Dream');
-
+    const [description, setDescription] = React.useState('');
+    const [title, setTitle] = React.useState('');
+    
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
@@ -19,12 +21,19 @@ export default function Journal() {
                     <View style={styles.modal}>
                         <Text style={styles.text}>Dream Journal</Text>
                         <TextInput
-                            onChangeText={(text) => setText(text)}
-                            placeholder="Type Dream Details Here"
+                            placeholder='Enter Dream Title Here'
+                            onChangeText={(newTitle) => setTitle(newTitle)}
                             style={styles.input}
                         />
+                        <TextInput
+                            placeholder='Enter Dream Details Here'
+                            onChangeText={(newDescription) => setDescription(newDescription)}
+                            style={styles.input2}
+                            multiline = {true}
+                            numberOfLines = {10}
+                        />
                         <Button
-                            title="Click to close"
+                            title='Press to close'
                             onPress={() => {
                                 setShowModal(!showModal);
                             }}
@@ -32,11 +41,12 @@ export default function Journal() {
                     </View>
                 </Modal>
                 <Button
-                    title="Add Dream"
+                    title='Add Dream'
                     onPress={() => {
                         setShowModal(!showModal);
                     }}
                 />
+                
             </View>
         </SafeAreaView>
     );
@@ -52,7 +62,6 @@ const styles = StyleSheet.create({
     modal: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: 'lightblue',
         padding: 100,
     },
     text: {
@@ -64,6 +73,12 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 1,
         height: 50,
+        width: 300,
+    },
+    input2: {
+        borderColor: 'black',
+        borderWidth: 1,
+        height: 100,
         width: 300,
     },
 });
