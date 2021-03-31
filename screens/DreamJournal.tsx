@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
+import Journal from '../components/Journal';
 
 export default function DreamJournal() {
-    return <View style={styles.container}></View>;
+    return <View style={styles.container}>
+        <Journal/>
+    </View>;
 }
 
 const styles = StyleSheet.create({
