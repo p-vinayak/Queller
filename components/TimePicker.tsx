@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Platform, View, StyleSheet } from 'react-native';
-import { Button, Text, Title } from 'react-native-paper';
+import { Button, Text, Title, Subheading } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 interface TimePickerProps {
@@ -43,7 +43,7 @@ export default function TimePicker({ customFunction, buttonTitle, labelTitle }: 
         <View>
             {!show && <Text>{date.toLocaleTimeString()}</Text>}
             <View style={{ flexDirection: 'row' }}>
-                <Title style={{ color: '#e4e7eb', marginLeft: '10%', paddingRight: '10%' }}>Enter Bed Time: </Title>
+                <Subheading style={{ color: '#e4e7eb' }}>{labelTitle}: </Subheading>
                 <Text>
                     {show && (
                         <DateTimePicker
@@ -57,7 +57,7 @@ export default function TimePicker({ customFunction, buttonTitle, labelTitle }: 
                     )}
                 </Text>
             </View>
-            <Button mode="contained" onPress={() => console.log('Pressed')} style={{ marginTop: 10 }} color="#006644">
+            <Button mode="contained" onPress={() => console.log('Pressed')} style={{ marginTop: 10 }} color="#651fff">
                 {buttonTitle}
             </Button>
         </View>

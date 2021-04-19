@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#24292e',
         borderRadius: 15,
-        margin: '3%',
+        margin: '5%',
+        marginBottom: '1%',
     },
     title: {
         textAlign: 'center',
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
 
 export default function SleepAdvisor() {
     return (
-        <>
+        <View style={{ flexDirection: 'column' }}>
             <Card style={styles.container}>
                 <Card.Title title="Bed Time Calculator" titleStyle={{ color: '#e4e7eb' }} />
                 <Card.Content>
@@ -33,6 +34,6 @@ export default function SleepAdvisor() {
                     <WakeTimeCalculator />
                 </Card.Content>
             </Card>
-        </>
+        </View>
     );
 }
