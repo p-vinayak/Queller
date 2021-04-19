@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import TimePicker from '../components/TimePicker';
+import BedTimeCalculator from '../components/BedTimeCalculator';
+import WakeTimeCalculator from '../components/WakeTimeCalculator';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#5ede9b',
+        borderWidth: 1,
+        borderColor: '#6d6875',
+        borderRadius: 15,
+        margin: '5%',
     },
     title: {
         fontSize: 20,
@@ -22,8 +25,13 @@ const styles = StyleSheet.create({
 
 export default function SleepAdvisor() {
     return (
-        <View>
-            <TimePicker />
-        </View>
+        <>
+            <View style={styles.container}>
+                <WakeTimeCalculator />
+            </View>
+            <View style={styles.container}>
+                <BedTimeCalculator />
+            </View>
+        </>
     );
 }
