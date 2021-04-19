@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Platform, View, Text, StyleSheet } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Platform, View, StyleSheet } from 'react-native';
+import { Button, Text, Title } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 interface TimePickerProps {
@@ -27,9 +27,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#000000',
     },
-    picker: {
-        textAlign: 'center',
-    },
 });
 
 export default function TimePicker({ customFunction, buttonTitle, labelTitle }: TimePickerProps) {
@@ -45,22 +42,22 @@ export default function TimePicker({ customFunction, buttonTitle, labelTitle }: 
     return (
         <View>
             {!show && <Text>{date.toLocaleTimeString()}</Text>}
-            <Text>
-                <Text style={styles.subTitle}>{labelTitle}: </Text>
-                {show && (
-                    <Text style={styles.picker}>
+            <View style={{ flexDirection: 'row' }}>
+                <Title style={{ color: '#e4e7eb', marginLeft: '10%', paddingRight: '10%' }}>Enter Bed Time: </Title>
+                <Text>
+                    {show && (
                         <DateTimePicker
                             value={date}
                             mode="time"
                             is24Hour={true}
                             display="default"
                             onChange={onTimeChange}
-                            style={{ width: 140, marginLeft: 45 }}
+                            style={{ width: 140 }}
                         />
-                    </Text>
-                )}
-            </Text>
-            <Button mode="contained" onPress={() => console.log('Pressed')}>
+                    )}
+                </Text>
+            </View>
+            <Button mode="contained" onPress={() => console.log('Pressed')} style={{ marginTop: 10 }} color="#006644">
                 {buttonTitle}
             </Button>
         </View>

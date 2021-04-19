@@ -6,7 +6,7 @@ import { Avatar, Button, Card, Title, Paragraph, Divider } from 'react-native-pa
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#293232',
+        backgroundColor: '#24292e',
         borderRadius: 15,
         margin: '3%',
     },
@@ -22,13 +22,13 @@ export default function SleepAdvisor() {
     return (
         <>
             <Card style={styles.container}>
-                <Card.Title title="Bed Time Calculator" />
+                <Card.Title title="Bed Time Calculator" titleStyle={{ color: '#e4e7eb' }} />
                 <Card.Content>
                     <BedTimeCalculator />
                 </Card.Content>
             </Card>
             <Card style={styles.container}>
-                <Card.Title title="Wake-Up Time Calculator" />
+                <Card.Title title="Wake-Up Time Calculator" titleStyle={{ color: '#e4e7eb' }} />
                 <Card.Content>
                     <WakeTimeCalculator />
                 </Card.Content>
