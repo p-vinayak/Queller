@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { Platform, View, Text, StyleSheet, Button } from 'react-native';
+import { Platform, View, Text, StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 interface TimePickerProps {
     customFunction: (date: Date) => void; // Continue Here
+    buttonTitle: string;
+    labelTitle: string;
 }
 
 const styles = StyleSheet.create({
@@ -22,17 +25,14 @@ const styles = StyleSheet.create({
     },
     subTitle: {
         fontSize: 15,
-        fontWeight: 'bold',
-        color: '#ffffff',
+        color: '#000000',
     },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: '80%',
+    picker: {
+        textAlign: 'center',
     },
 });
 
-export default function TimePicker({ customFunction }: TimePickerProps) {
+export default function TimePicker({ customFunction, buttonTitle, labelTitle }: TimePickerProps) {
     const [date, setDate] = React.useState(new Date());
     const [show, setShow] = React.useState(Platform.OS === 'ios');
 
@@ -46,9 +46,9 @@ export default function TimePicker({ customFunction }: TimePickerProps) {
         <View>
             {!show && <Text>{date.toLocaleTimeString()}</Text>}
             <Text>
-                <Text style={styles.subTitle}>Enter Wake-Up Time: </Text>
+                <Text style={styles.subTitle}>{labelTitle}: </Text>
                 {show && (
-                    <Text>
+                    <Text style={styles.picker}>
                         <DateTimePicker
                             value={date}
                             mode="time"
@@ -60,7 +60,9 @@ export default function TimePicker({ customFunction }: TimePickerProps) {
                     </Text>
                 )}
             </Text>
-            <Button title="Calculate Bed Times" onPress={() => console.log('eh')}></Button>
+            <Button mode="contained" onPress={() => console.log('Pressed')}>
+                {buttonTitle}
+            </Button>
         </View>
     );
 }

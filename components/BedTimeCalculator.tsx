@@ -29,8 +29,7 @@ export default function BedTimeCalculator() {
     }
     return (
         <View>
-            <Text style={styles.title}>Bed Time Calculator</Text>
-            <TimePicker customFunction={custom} />
+            <TimePicker customFunction={custom} labelTitle="Enter Wake-Up Time" buttonTitle="Calculate Bed Times" />
         </View>
     );
 }
