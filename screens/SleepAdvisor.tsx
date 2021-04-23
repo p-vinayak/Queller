@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import BedTimeCalculator from '../components/BedTimeCalculator';
 import WakeTimeCalculator from '../components/WakeTimeCalculator';
 import { Avatar, Button, Card, Title, Paragraph, Divider } from 'react-native-paper';
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
 export default function SleepAdvisor() {
     return (
-        <>
+        <ScrollView>
             <Card style={styles.container}>
                 <Card.Title title="Bed Time Calculator" titleStyle={{ color: '#e4e7eb' }} />
                 <Card.Content>
@@ -34,6 +34,6 @@ export default function SleepAdvisor() {
                     <WakeTimeCalculator />
                 </Card.Content>
             </Card>
-        </>
+        </ScrollView>
     );
 }

@@ -32,12 +32,17 @@ const styles = StyleSheet.create({
 });
 
 export default function WakeTimeCalculator() {
+    const [wakeUpTimes, setWakeUpTimes] = React.useState(Array<Date>());
+
     function calculateWakeUpTimes(date: Date) {
-        let epochTimeNow = date.getTime() / 1000;
+        const calculatedWakeUpTimes = [];
+        const currentDate = date;
         for (let x = 0; x < 16; x++) {
-            epochTimeNow += 5400;
-            console.log(`${x} - ${new Date(epochTimeNow * 1000)}`);
+            currentDate.setHours(currentDate.getHours() + 1);
+            currentDate.setMinutes(currentDate.getMinutes() + 30);
+            calculatedWakeUpTimes.push(new Date(+currentDate));
         }
+        setWakeUpTimes(calculatedWakeUpTimes);
     }
 
     return (
@@ -57,34 +62,22 @@ export default function WakeTimeCalculator() {
                     justifyContent: 'space-between',
                     flexWrap: 'wrap',
                 }}>
-                <Chip
-                    mode="outlined"
-                    style={{ marginTop: 10, backgroundColor: 'black' }}
-                    textStyle={{ color: '#5ede9b' }}
-                    onPress={() => console.log('Pressed')}>
-                    Example Chip
-                </Chip>
-                <Chip
-                    mode="outlined"
-                    style={{ marginTop: 10, backgroundColor: 'black' }}
-                    textStyle={{ color: '#5ede9b' }}
-                    onPress={() => console.log('Pressed')}>
-                    Example Chip
-                </Chip>
-                <Chip
-                    mode="outlined"
-                    style={{ marginTop: 10, backgroundColor: 'black' }}
-                    textStyle={{ color: '#5ede9b' }}
-                    onPress={() => console.log('Pressed')}>
-                    Example Chip
-                </Chip>
-                <Chip
-                    mode="outlined"
-                    style={{ marginTop: 10, backgroundColor: 'black' }}
-                    textStyle={{ color: '#5ede9b' }}
-                    onPress={() => console.log('Pressed')}>
-                    Example Chip
-                </Chip>
+                {wakeUpTimes.map((wakeUpTime, index) => {
+                    return (
+                        <Chip
+                            key={index}
+                            mode="outlined"
+                            style={{ marginTop: 10, backgroundColor: 'black' }}
+                            textStyle={{ color: '#5ede9b' }}
+                            onPress={() => console.log('Pressed')}>
+                            {wakeUpTime.toLocaleTimeString('en-US', {
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                hour12: true,
+                            })}
+                        </Chip>
+                    );
+                })}
             </View>
         </>
     );

@@ -25,12 +25,18 @@ const styles = StyleSheet.create({
 });
 
 export default function BedTimeCalculator() {
+    const [bedTimes, setBedTimes] = React.useState(Array<Date>());
+
     function calculateBedTimes(date: Date) {
-        let epochTimeNow = date.getTime() / 1000;
+        const calculatedBedTimes = [];
+        const currentDate = date;
         for (let x = 0; x < 16; x++) {
-            epochTimeNow -= 5400;
-            console.log(`${x} - ${new Date(epochTimeNow * 1000)}`);
+            currentDate.setHours(currentDate.getHours() - 1);
+            currentDate.setMinutes(currentDate.getMinutes() - 30);
+            calculatedBedTimes.push(new Date(+currentDate));
         }
+        console.log(calculatedBedTimes);
+        setBedTimes(calculatedBedTimes);
     }
 
     return (
@@ -41,43 +47,27 @@ export default function BedTimeCalculator() {
                     labelTitle="Enter Wake-Up Time"
                     buttonTitle="Calculate Bed Times"
                 />
-                <View
-                    style={{
-                        marginTop: 10,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        flexWrap: 'wrap',
-                    }}>
-                    <Chip
-                        mode="outlined"
-                        style={{ marginTop: 10, backgroundColor: 'black' }}
-                        textStyle={{ color: '#5ede9b' }}
-                        onPress={() => console.log('Pressed')}>
-                        Example Chip
-                    </Chip>
-                    <Chip
-                        mode="outlined"
-                        style={{ marginTop: 10, backgroundColor: 'black' }}
-                        textStyle={{ color: '#5ede9b' }}
-                        onPress={() => console.log('Pressed')}>
-                        Example Chip
-                    </Chip>
-                    <Chip
-                        mode="outlined"
-                        style={{ marginTop: 10, backgroundColor: 'black' }}
-                        textStyle={{ color: '#5ede9b' }}
-                        onPress={() => console.log('Pressed')}>
-                        Example Chip
-                    </Chip>
-                    <Chip
-                        mode="outlined"
-                        style={{ marginTop: 10, backgroundColor: 'black' }}
-                        textStyle={{ color: '#5ede9b' }}
-                        onPress={() => console.log('Pressed')}>
-                        Example Chip
-                    </Chip>
-                </View>
+            </View>
+            <View
+                style={{
+                    marginTop: 10,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                }}>
+                {bedTimes.map((bedTime, index) => {
+                    return (
+                        <Chip
+                            key={index}
+                            mode="outlined"
+                            style={{ marginTop: 10, backgroundColor: 'black' }}
+                            textStyle={{ color: '#5ede9b' }}
+                            onPress={() => console.log('Pressed')}>
+                            {bedTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
+                        </Chip>
+                    );
+                })}
             </View>
         </>
     );
