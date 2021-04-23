@@ -36,7 +36,6 @@ export default function TimePicker({ customFunction, buttonTitle, labelTitle }: 
     function onTimeChange(event: any, selectedDate?: Date | undefined) {
         setShow(Platform.OS === 'ios');
         setDate(selectedDate || date);
-        customFunction(date);
     }
 
     return (
@@ -57,7 +56,7 @@ export default function TimePicker({ customFunction, buttonTitle, labelTitle }: 
                     )}
                 </Text>
             </View>
-            <Button mode="contained" onPress={() => console.log('Pressed')} style={{ marginTop: 10 }} color="#651fff">
+            <Button mode="contained" onPress={() => customFunction(date)} style={{ marginTop: 10 }} color="#651fff">
                 {buttonTitle}
             </Button>
         </View>
