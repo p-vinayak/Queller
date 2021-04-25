@@ -9,7 +9,7 @@ export default function Journal() {
     const [journals, setJournals] = React.useState([]);
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-    const containerStyle = { backgroundColor: '#e4e7eb', padding: 20 };
+    const containerStyle = { backgroundColor: 'white', padding: 20 };
 
     return (
         <>
@@ -17,39 +17,47 @@ export default function Journal() {
                 <List.Item
                     title="Journal #1"
                     description="Item description"
-                    left={(props) => <List.Icon {...props} icon="book" />}
-                    right={(props) => <List.Icon {...props} icon="chevron-right" />}
+                    left={(props) => <List.Icon {...props} icon="book" color="black" />}
+                    right={(props) => <List.Icon {...props} icon="chevron-right" color="black" />}
                     style={{ backgroundColor: 'white' }}
+                    titleStyle={{ color: 'black' }}
+                    descriptionStyle={{ color: 'black' }}
                 />
                 <Divider />
                 <List.Item
                     title="Journal #2"
                     description="Item description"
-                    left={(props) => <List.Icon {...props} icon="book" />}
-                    right={(props) => <List.Icon {...props} icon="chevron-right" />}
+                    left={(props) => <List.Icon {...props} icon="book" color="black" />}
+                    right={(props) => <List.Icon {...props} icon="chevron-right" color="black" />}
                     style={{ backgroundColor: 'white' }}
+                    titleStyle={{ color: 'black' }}
+                    descriptionStyle={{ color: 'black' }}
                 />
                 <Divider />
                 <List.Item
                     title="Journal #3"
                     description="Item description"
-                    left={(props) => <List.Icon {...props} icon="book" />}
-                    right={(props) => <List.Icon {...props} icon="chevron-right" />}
+                    left={(props) => <List.Icon {...props} icon="book" color="black" />}
+                    right={(props) => <List.Icon {...props} icon="chevron-right" color="black" />}
                     style={{ backgroundColor: 'white' }}
+                    titleStyle={{ color: 'black' }}
+                    descriptionStyle={{ color: 'black' }}
                 />
                 <Divider />
                 <List.Item
                     title="Journal #4"
                     description="Item description"
-                    left={(props) => <List.Icon {...props} icon="book" />}
-                    right={(props) => <List.Icon {...props} icon="chevron-right" />}
+                    left={(props) => <List.Icon {...props} icon="book" color="black" />}
+                    right={(props) => <List.Icon {...props} icon="chevron-right" color="black" />}
                     style={{ backgroundColor: 'white' }}
+                    titleStyle={{ color: 'black' }}
+                    descriptionStyle={{ color: 'black' }}
                 />
             </List.Section>
             <Provider>
                 <Portal>
                     <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-                        <Title style={{ textAlign: 'center' }}>Journal Input</Title>
+                        <Title style={{ textAlign: 'center', color: 'black' }}>Journal Input</Title>
                         <TextInput
                             label="Journal Title"
                             value={title}
