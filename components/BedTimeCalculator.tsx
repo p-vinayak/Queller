@@ -35,7 +35,6 @@ export default function BedTimeCalculator() {
             currentDate.setMinutes(currentDate.getMinutes() - 30);
             calculatedBedTimes.push(new Date(+currentDate));
         }
-        console.log(calculatedBedTimes);
         setBedTimes(calculatedBedTimes);
     }
 
