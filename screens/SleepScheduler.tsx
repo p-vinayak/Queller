@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
+import Scheduler from '../components/Scheduler';
 
 export default function SleepScheulder() {
-    return <View style={styles.container}></View>;
+    return (
+        <View style={styles.container}>
+            <Scheduler />
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

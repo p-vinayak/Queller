@@ -3,12 +3,18 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 import useCachedResources from './hooks/useCachedResources';
-// import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { firebaseConfig } from './configs/firebase';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
-    // const colorScheme = useColorScheme();
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    } else {
+        firebase.app();
+    }
 
     if (!isLoadingComplete) {
         return null;
