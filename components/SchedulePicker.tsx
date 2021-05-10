@@ -41,10 +41,14 @@ export default function SchedulePicker({ customFunction, labelTitle, defaultDate
 
     return (
         <View>
-            {!show && <Text>{date.toLocaleTimeString()}</Text>}
             <View style={{ flexDirection: 'row' }}>
                 <Subheading style={{ color: 'black' }}>{labelTitle}: </Subheading>
                 <Text>
+                    {Platform.OS !== 'ios' && (
+                        <Button mode="contained" style={{ marginLeft: 20 }} onPress={() => setShow(true)}>
+                            Show Time Picker
+                        </Button>
+                    )}
                     {show && (
                         <DateTimePicker
                             value={date}
@@ -57,6 +61,7 @@ export default function SchedulePicker({ customFunction, labelTitle, defaultDate
                     )}
                 </Text>
             </View>
+            {!show && <Subheading style={{ color: 'black' }}>Selected Time: {date.toLocaleTimeString()}</Subheading>}
         </View>
     );
 }

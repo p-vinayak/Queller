@@ -7,6 +7,9 @@ import Navigation from './navigation';
 import { firebaseConfig } from './configs/firebase';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 export default function App() {
     const isLoadingComplete = useCachedResources();

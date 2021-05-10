@@ -40,10 +40,14 @@ export default function TimePicker({ customFunction, buttonTitle, labelTitle }: 
 
     return (
         <View>
-            {!show && <Text>{date.toLocaleTimeString()}</Text>}
             <View style={{ flexDirection: 'row' }}>
                 <Subheading style={{ color: '#e4e7eb' }}>{labelTitle}: </Subheading>
                 <Text>
+                    {Platform.OS !== 'ios' && (
+                        <Button mode="outlined" style={{ marginLeft: 20 }} onPress={() => setShow(true)}>
+                            Show Time Picker
+                        </Button>
+                    )}
                     {show && (
                         <DateTimePicker
                             value={date}
@@ -56,6 +60,7 @@ export default function TimePicker({ customFunction, buttonTitle, labelTitle }: 
                     )}
                 </Text>
             </View>
+            {!show && <Subheading>Selected Time: {date.toLocaleTimeString()}</Subheading>}
             <Button mode="contained" onPress={() => customFunction(date)} style={{ marginTop: 10 }} color="#651fff">
                 {buttonTitle}
             </Button>
