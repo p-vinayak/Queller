@@ -4,7 +4,7 @@ import { Button, Text, Title, Subheading } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 interface TimePickerProps {
-    customFunction: (date: Date) => void; // Continue Here
+    customFunction: (date: Date) => void;
     buttonTitle: string;
     labelTitle: string;
 }

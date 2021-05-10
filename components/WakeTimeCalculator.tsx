@@ -68,8 +68,7 @@ export default function WakeTimeCalculator() {
                             key={index}
                             mode="outlined"
                             style={{ marginTop: 10, backgroundColor: 'black' }}
-                            textStyle={{ color: '#5ede9b' }}
-                            onPress={() => console.log('Pressed')}>
+                            textStyle={{ color: '#5ede9b' }}>
                             {wakeUpTime.toLocaleTimeString('en-US', {
                                 hour: 'numeric',
                                 minute: 'numeric',

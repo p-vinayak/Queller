@@ -73,7 +73,7 @@ export default function Schedule() {
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
     const updateBedTime = (bedTime: Date) => setBedTime(bedTime);
-    const updateWakeUpTime = (wakeUpTime: Date) => setBedTime(wakeUpTime);
+    const updateWakeUpTime = (wakeUpTime: Date) => setWakeUpTime(wakeUpTime);
 
     const containerStyle = { backgroundColor: 'white', padding: 20 };
     const db = firebase.firestore();
