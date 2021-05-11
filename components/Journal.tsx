@@ -24,17 +24,17 @@ interface Journal {
 }
 
 export default function Journal() {
-    const [visible, setVisible] = React.useState(false);
-    const [visibleSnack, setVisibleSnack] = React.useState(false);
-    const [visibleDetails, setVisibleDetails] = React.useState(false);
+    const [visible, setVisible] = React.useState(false); // Input modal visibility
+    const [visibleSnack, setVisibleSnack] = React.useState(false); // Error visibility
+    const [visibleDetails, setVisibleDetails] = React.useState(false); // Details modal visibility
+    const [title, setTitle] = React.useState(''); // Title for input modal
+    const [description, setDescription] = React.useState(''); // Description for input modal
+    const [detailsTitle, setDetailsTitle] = React.useState(''); // Title for details modal
+    const [detailsDescription, setDetailsDescription] = React.useState(''); // Description for details modal
+    const [detailsId, setDetailsId] = React.useState(''); // ID for details modal
+    const [journals, setJournals] = React.useState(new Array<Journal>()); // Journals from firebase
 
-    const [title, setTitle] = React.useState('');
-    const [description, setDescription] = React.useState('');
-    const [detailsTitle, setDetailsTitle] = React.useState('');
-    const [detailsDescription, setDetailsDescription] = React.useState('');
-    const [detailsId, setDetailsId] = React.useState('');
-
-    const [journals, setJournals] = React.useState(new Array<Journal>());
+    // Methods for setting useState variables
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
     const showDetails = (title: string, description: string, id: string) => {
@@ -49,10 +49,12 @@ export default function Journal() {
     const containerStyle = { backgroundColor: 'white', padding: 20 };
     const db = firebase.firestore();
 
+    // Initial Load
     React.useEffect(() => {
         getJournals();
     }, []);
 
+    // Validate journal input fields
     async function validateInput() {
         if (title === '' || description === '') showError();
         else {
@@ -61,6 +63,7 @@ export default function Journal() {
         }
     }
 
+    // Create journal in firebase
     async function createJournal() {
         await db.collection('journals').doc().set({
             title: title,
@@ -70,6 +73,7 @@ export default function Journal() {
         await getJournals();
     }
 
+    // Get all journals from firebase
     async function getJournals() {
         console.log('getting', new Date());
         const journalsArray: Journal[] = [];
@@ -86,10 +90,10 @@ export default function Journal() {
         setJournals(journalsArray);
     }
 
+    // Delete journal in firebase
     async function deleteJournal(journalId: string) {
         await db.collection('journals').doc(journalId).delete();
         await getJournals();
-        hideDetails();
     }
 
     return (
@@ -165,9 +169,7 @@ export default function Journal() {
                 onDismiss={dismissError}
                 action={{
                     label: 'Dismiss',
-                    onPress: () => {
-                        // Do something
-                    },
+                    onPress: () => hideDetails(),
                 }}>
                 Error: Please enter a title and a description!
             </Snackbar>

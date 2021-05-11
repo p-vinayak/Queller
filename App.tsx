@@ -9,16 +9,19 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { LogBox } from 'react-native';
 
-LogBox.ignoreLogs(['Setting a timer']);
+LogBox.ignoreLogs(['Setting a timer']); // Ignore android timer warnings
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
+
+    // Initialize firebase if not already initialized.
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     } else {
         firebase.app();
     }
 
+    // Wait for loading to finish
     if (!isLoadingComplete) {
         return null;
     } else {

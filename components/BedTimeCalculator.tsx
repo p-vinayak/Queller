@@ -25,8 +25,9 @@ const styles = StyleSheet.create({
 });
 
 export default function BedTimeCalculator() {
-    const [bedTimes, setBedTimes] = React.useState(Array<Date>());
+    const [bedTimes, setBedTimes] = React.useState(Array<Date>()); // Calculated REM Bedtimes
 
+    // Calculate all possible bedtimes based on provided wake-up time.
     function calculateBedTimes(date: Date) {
         const calculatedBedTimes = [];
         const currentDate = date;

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import BedTimeCalculator from '../components/BedTimeCalculator';
 import WakeTimeCalculator from '../components/WakeTimeCalculator';
-import { Avatar, Button, Card, Title, Paragraph, Divider } from 'react-native-paper';
+import { Card } from 'react-native-paper';
 
 const styles = StyleSheet.create({
     container: {

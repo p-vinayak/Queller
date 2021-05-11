@@ -4,35 +4,16 @@ import { Button, Text, Title, Subheading } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 interface TimePickerProps {
-    customFunction: (date: Date) => void; // Continue Here
+    customFunction: (date: Date) => void;
     labelTitle: string;
     defaultDate: Date;
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#5ede9b',
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#ffffff',
-        textAlign: 'center',
-        paddingTop: 15,
-    },
-    subTitle: {
-        fontSize: 15,
-        color: '#000000',
-    },
-});
-
 export default function SchedulePicker({ customFunction, labelTitle, defaultDate }: TimePickerProps) {
-    const [date, setDate] = React.useState(defaultDate);
-    const [show, setShow] = React.useState(Platform.OS === 'ios');
+    const [date, setDate] = React.useState(defaultDate); // Schedulepicker date value
+    const [show, setShow] = React.useState(Platform.OS === 'ios'); // To make schedule picker visible
 
+    // Change date value whenever time changes and handle schedule picker visiblity.
     function onTimeChange(event: any, selectedDate?: Date | undefined) {
         setShow(Platform.OS === 'ios');
         setDate(selectedDate || date);
@@ -65,3 +46,23 @@ export default function SchedulePicker({ customFunction, labelTitle, defaultDate
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#5ede9b',
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#ffffff',
+        textAlign: 'center',
+        paddingTop: 15,
+    },
+    subTitle: {
+        fontSize: 15,
+        color: '#000000',
+    },
+});

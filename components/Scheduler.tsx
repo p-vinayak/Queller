@@ -1,19 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
-import {
-    FAB,
-    Provider,
-    Portal,
-    Modal,
-    Title,
-    Chip,
-    TextInput,
-    Button,
-    List,
-    Divider,
-    Snackbar,
-    Text,
-} from 'react-native-paper';
+import { FAB, Provider, Portal, Modal, Title, Chip, Button, List, Divider, Snackbar, Text } from 'react-native-paper';
 import SchedulePicker from './SchedulePicker';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
@@ -38,17 +25,18 @@ interface Schedule {
 }
 
 export default function Schedule() {
-    const [visible, setVisible] = React.useState(false);
-    const [visibleSnack, setVisibleSnack] = React.useState(false);
-    const [visibleDetails, setVisibleDetails] = React.useState(false);
-    const [bedTime, setBedTime] = React.useState(new Date());
-    const [wakeUpTime, setWakeUpTime] = React.useState(new Date());
-    const [schedules, setSchedules] = React.useState(new Array<Schedule>());
-    const [detailsBedTime, setDetailsBedTime] = React.useState(bedTime);
-    const [detailsWakeUpTime, setDetailsWakeUpTime] = React.useState(wakeUpTime);
-    const [detailsId, setDetailsId] = React.useState('');
-    const [detailsTitle, setDetailsTitle] = React.useState('');
+    const [visible, setVisible] = React.useState(false); // Input modal visibility
+    const [visibleSnack, setVisibleSnack] = React.useState(false); // Error visibility
+    const [visibleDetails, setVisibleDetails] = React.useState(false); // Schedule details visibility
+    const [bedTime, setBedTime] = React.useState(new Date()); // Bedtime for input modal
+    const [wakeUpTime, setWakeUpTime] = React.useState(new Date()); // Wakeup time for input modal
+    const [schedules, setSchedules] = React.useState(new Array<Schedule>()); // Schedules from firebase
+    const [detailsBedTime, setDetailsBedTime] = React.useState(bedTime); // Bedtime for details modal
+    const [detailsWakeUpTime, setDetailsWakeUpTime] = React.useState(wakeUpTime); // Wakeup time for details modal
+    const [detailsId, setDetailsId] = React.useState(''); // ID for details modal
+    const [detailsTitle, setDetailsTitle] = React.useState(''); // Title for details modal
     const [selectedDays, setSelectedDays] = React.useState({
+        // Selected days for input modal
         monday: false,
         tuesday: false,
         wednesday: false,
@@ -57,8 +45,9 @@ export default function Schedule() {
         saturday: false,
         sunday: false,
     });
-    const [detailsDays, setDetailsDays] = React.useState(selectedDays);
+    const [detailsDays, setDetailsDays] = React.useState(selectedDays); // Selected days for details modal
 
+    // For details modal
     const showDetails = (bedTime: Date, wakeUpTime: Date, days: Days, id: string, title: string) => {
         setDetailsBedTime(bedTime);
         setDetailsWakeUpTime(wakeUpTime);
@@ -67,6 +56,7 @@ export default function Schedule() {
         setDetailsId(id);
         setVisibleDetails(true);
     };
+    // Methods for setting useState variables
     const hideDetails = () => setVisibleDetails(false);
     const showError = () => setVisibleSnack(true);
     const dismissError = () => setVisibleSnack(false);
@@ -78,10 +68,12 @@ export default function Schedule() {
     const containerStyle = { backgroundColor: 'white', padding: 20 };
     const db = firebase.firestore();
 
+    // Initial Load
     React.useEffect(() => {
         getSchedules();
     }, []);
 
+    // Validate schedule input fields
     async function validateInput() {
         for (const day in selectedDays) {
             if (selectedDays[day as Day] === true) {
@@ -94,6 +86,7 @@ export default function Schedule() {
         return false;
     }
 
+    // Get all schedules from firebase
     async function getSchedules() {
         console.log('getting', new Date());
         const schedulesArray: Schedule[] = [];
@@ -105,6 +98,7 @@ export default function Schedule() {
         setSchedules(schedulesArray);
     }
 
+    // Create schedule in firebase
     async function createSchedule() {
         await db.collection('schedules').doc().set({
             bedTime: bedTime.getTime(),
@@ -114,12 +108,13 @@ export default function Schedule() {
         await getSchedules();
     }
 
+    // Delete schedule in firebase
     async function deleteSchedule(scheduleId: string) {
         await db.collection('schedules').doc(scheduleId).delete();
         await getSchedules();
-        hideDetails();
     }
 
+    // Created formatted day string to show in modal description.
     function makeDayString(days: Days) {
         let title = '';
         for (const day in days) {
@@ -234,7 +229,7 @@ export default function Schedule() {
                 action={{
                     label: 'Dismiss',
                     onPress: () => {
-                        // Do something
+                        hideDetails();
                     },
                 }}>
                 Error: Please select atleast one scheduled day!

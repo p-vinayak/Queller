@@ -3,37 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import { Chip } from 'react-native-paper';
 import TimePicker from './TimePicker';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#323f4b',
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#ffffff',
-        textAlign: 'center',
-        paddingTop: 15,
-    },
-    subTitle: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: '#ffffff',
-        textAlign: 'left',
-        paddingTop: 15,
-    },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: '80%',
-    },
-});
-
 export default function WakeTimeCalculator() {
-    const [wakeUpTimes, setWakeUpTimes] = React.useState(Array<Date>());
+    const [wakeUpTimes, setWakeUpTimes] = React.useState(Array<Date>()); // Calculated REM Wake Up Times
 
+    // Calculate all possible wake up times based on provided bed time.
     function calculateWakeUpTimes(date: Date) {
         const calculatedWakeUpTimes = [];
         const currentDate = date;
@@ -81,3 +54,31 @@ export default function WakeTimeCalculator() {
         </>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#323f4b',
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#ffffff',
+        textAlign: 'center',
+        paddingTop: 15,
+    },
+    subTitle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: '#ffffff',
+        textAlign: 'left',
+        paddingTop: 15,
+    },
+    separator: {
+        marginVertical: 30,
+        height: 1,
+        width: '80%',
+    },
+});

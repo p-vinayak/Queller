@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
 });
 
 export default function TimePicker({ customFunction, buttonTitle, labelTitle }: TimePickerProps) {
-    const [date, setDate] = React.useState(new Date());
-    const [show, setShow] = React.useState(Platform.OS === 'ios');
+    const [date, setDate] = React.useState(new Date()); // Timepicker date value
+    const [show, setShow] = React.useState(Platform.OS === 'ios'); // To make time picker visible
 
+    // Change date value whenever time changes and handle timepicker visiblity.
     function onTimeChange(event: any, selectedDate?: Date | undefined) {
         setShow(Platform.OS === 'ios');
         setDate(selectedDate || date);
